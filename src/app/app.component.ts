@@ -1,10 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
+import { ExampleService } from "./http/example.service";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.css"]
 })
-export class AppComponent {
-  title = 'lumen-api-front';
+export class AppComponent implements OnInit {
+  title = "lumen-api-front";
+
+  constructor(private exampleService: ExampleService) {}
+
+  ngOnInit() {
+    this.exampleService.get().subscribe(response => console.log(response));
+  }
 }
